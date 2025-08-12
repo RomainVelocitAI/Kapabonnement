@@ -178,3 +178,62 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Animation for the pulsing effect */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Animation for the ping effect */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Custom animations for the orbital timeline */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Backdrop blur */
+.backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
+
+/* Custom gradients */
+.bg-gradient-orbital {
+  background: linear-gradient(to bottom right, #6366f1, #3b82f6, #14b8a6);
+}
+
+/* Custom transforms */
+.scale-125 {
+  transform: scale(1.25);
+}
+
+.scale-150 {
+  transform: scale(1.5);
+}
+
+/* Custom opacity values */
+.opacity-70 {
+  opacity: 0.7;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}

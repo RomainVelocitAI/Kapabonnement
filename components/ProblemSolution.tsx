@@ -77,9 +77,9 @@ export default function ProblemSolution() {
         {/* Accroche empathique */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-display text-digiqo-black mb-6">
-            Vous savez que votre entreprise a besoin d'être visible en ligne,
+            Vous savez que votre entreprise a besoin d&apos;être visible en ligne,
             <span className="block text-2xl md:text-3xl lg:text-4xl mt-2 text-digiqo-gray-dark font-body">
-              mais créer un site web, c'est...
+              mais créer un site web, c&apos;est...
             </span>
           </h2>
         </div>
@@ -115,7 +115,7 @@ export default function ProblemSolution() {
           </div>
           <div className="relative inline-block bg-gradient-to-r from-digiqo-primary to-digiqo-primary-dark text-white px-8 py-6 rounded-xl shadow-digiqo-lg">
             <p className="text-xl md:text-2xl font-bold font-display">
-              Et si on vous disait qu'en 48h, votre site professionnel
+              Et si on vous disait qu&apos;en 48h, votre site professionnel
               <span className="block">est en ligne, sans y toucher ?</span>
             </p>
           </div>
@@ -199,7 +199,7 @@ export default function ProblemSolution() {
         {/* CTA */}
         <div className="text-center mt-16">
           <button className="group px-8 py-4 bg-gradient-to-r from-digiqo-primary to-digiqo-primary-dark text-white rounded-xl hover:shadow-digiqo-lg transition-all duration-300 font-bold font-display text-lg flex items-center gap-2 mx-auto">
-            Voir nos formules d'abonnement
+            Voir nos formules d&apos;abonnement
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
           <p className="text-digiqo-gray-dark mt-4 text-sm font-body">
