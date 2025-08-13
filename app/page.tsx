@@ -7,7 +7,9 @@ export default function Home() {
     <div className="min-h-screen">
       <HeroDigiqoV3 />
       <ProblemSolution />
-      <RadialOrbitalTimelineDemo />
+      <div className="pb-16 md:pb-0">
+        <RadialOrbitalTimelineDemo />
+      </div>
     </div>
   )
 }
