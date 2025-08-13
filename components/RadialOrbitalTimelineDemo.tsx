@@ -75,11 +75,11 @@ const timelineData = [
 export function RadialOrbitalTimelineDemo() {
   return (
     <div className="relative">
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20">
-        <h2 className="text-6xl md:text-7xl font-bold text-white text-center tracking-tight">
+      <div className="absolute top-8 md:top-16 left-1/2 -translate-x-1/2 z-20 px-4 w-full max-w-2xl">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white text-center tracking-tight">
           Nos Formules
         </h2>
-        <p className="text-xl text-white/80 text-center mt-4">
+        <p className="text-sm sm:text-base md:text-xl text-white/80 text-center mt-2 md:mt-4">
           Cliquez sur la formule adaptée à vos besoins
         </p>
       </div>

@@ -122,7 +122,7 @@ export const Footer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h3 className="font-bold text-lg mb-6 text-white">L'Entreprise</h3>
+              <h3 className="font-bold text-lg mb-6 text-white">L&apos;Entreprise</h3>
               <ul className="space-y-3">
                 {navigation.company.map((item) => (
                   <li key={item.name}>
@@ -162,7 +162,7 @@ export const Footer = () => {
                     type="submit"
                     className="px-6 py-3 bg-gradient-to-r from-digiqo-accent to-digiqo-secondary text-white font-semibold rounded-full hover:shadow-lg hover:shadow-digiqo-accent/20 transition-all duration-300 transform hover:scale-105"
                   >
-                    S'abonner
+                    S&apos;abonner
                   </button>
                 </form>
               </div>

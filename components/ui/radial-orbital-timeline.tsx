@@ -117,7 +117,9 @@ export default function RadialOrbitalTimeline({
 
   const calculateNodePosition = (index: number, total: number) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radius = 250;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const isSmallMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const radius = isSmallMobile ? 120 : (isMobile ? 150 : 250);
     const radian = (angle * Math.PI) / 180;
 
     const x = radius * Math.cos(radian) + centerOffset.x;
@@ -158,7 +160,7 @@ export default function RadialOrbitalTimeline({
 
   return (
     <div
-      className="w-full h-screen flex flex-col items-center justify-center bg-gradient-to-br from-digiqo-primary to-digiqo-primary-dark overflow-hidden"
+      className="w-full h-screen flex flex-col items-center justify-center bg-gradient-to-br from-digiqo-primary to-digiqo-primary-dark overflow-hidden px-2 md:px-4"
       ref={containerRef}
       onClick={handleContainerClick}
     >
@@ -180,7 +182,7 @@ export default function RadialOrbitalTimeline({
             <div className="w-8 h-8 rounded-full bg-white backdrop-blur-md"></div>
           </div>
 
-          <div className="absolute w-[500px] h-[500px] rounded-full border border-digiqo-orange/20"></div>
+          <div className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] rounded-full border border-digiqo-orange/20"></div>
 
           {timelineData.map((item, index) => {
             const position = calculateNodePosition(index, timelineData.length);
@@ -223,7 +225,7 @@ export default function RadialOrbitalTimeline({
 
                 <div
                   className={`
-                  w-14 h-14 rounded-full flex items-center justify-center
+                  w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center
                   ${
                     isExpanded
                       ? "bg-digiqo-accent text-white"
@@ -243,13 +245,13 @@ export default function RadialOrbitalTimeline({
                   ${isExpanded ? "scale-125" : ""}
                 `}
                 >
-                  <Icon size={18} />
+                  <Icon className="w-4 h-4 md:w-5 md:h-5" />
                 </div>
 
                 <div
                   className={`
-                  absolute top-16 left-1/2 -translate-x-1/2 whitespace-nowrap
-                  text-xs font-semibold tracking-wider text-center
+                  absolute top-14 md:top-16 left-1/2 -translate-x-1/2 whitespace-nowrap
+                  text-[10px] md:text-xs font-semibold tracking-wider text-center
                   transition-all duration-300
                   ${isExpanded ? "text-white scale-110" : "text-white/70"}
                 `}
@@ -258,7 +260,7 @@ export default function RadialOrbitalTimeline({
                 </div>
 
                 {isExpanded && (
-                  <Card className="absolute top-24 left-1/2 -translate-x-1/2 w-80 bg-white backdrop-blur-lg border-digiqo-orange/30 shadow-xl shadow-digiqo-orange/20 overflow-visible">
+                  <Card className="absolute top-24 left-1/2 -translate-x-1/2 w-[90vw] max-w-xs md:w-80 bg-white backdrop-blur-lg border-digiqo-orange/30 shadow-xl shadow-digiqo-orange/20 overflow-visible">
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-digiqo-orange/50"></div>
                     <CardHeader className="pb-2">
                       <CardTitle className="text-lg text-digiqo-primary">

@@ -122,7 +122,76 @@ function AnimatedBentoCell({
 
 export default function HeroDigiqoV3() {
   return (
-    <ContainerScroll className="h-[350vh] bg-gradient-to-b from-digiqo-white via-digiqo-gray-light to-digiqo-white">
+    <div className="min-h-screen">
+      {/* Mobile version without animation */}
+      <div className="block lg:hidden bg-gradient-to-b from-digiqo-white via-digiqo-gray-light to-digiqo-white py-12 px-4">
+        {/* Hero text for mobile */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full mb-6 shadow-md">
+            <Sparkles className="w-4 h-4 text-digiqo-accent" />
+            <span className="text-sm font-medium text-digiqo-primary font-body">
+              Agence digitale n°1 à La Réunion
+            </span>
+          </div>
+          
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight font-display mb-4">
+            <span className="text-black">Créez votre site web avec</span>{" "}
+            <span className="bg-gradient-digiqo bg-clip-text text-transparent relative inline-block">
+              Digiqo
+            </span>
+          </h1>
+          
+          <p className="text-base text-digiqo-gray-dark max-w-xl mx-auto mb-6 font-body">
+            Sites web professionnels, SEO performant et accompagnement personnalisé pour votre réussite digitale.
+          </p>
+          
+          <div className="flex flex-col gap-3">
+            <button className="group px-6 py-3 bg-gradient-digiqo text-white rounded-xl hover:shadow-digiqo-lg transition-all duration-300 font-medium font-display text-sm flex items-center justify-center gap-2">
+              Découvrir nos offres
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button className="px-6 py-3 border-2 border-digiqo-primary text-digiqo-primary rounded-xl hover:bg-digiqo-primary hover:text-white transition-all duration-300 font-medium font-display text-sm">
+              Demander un devis gratuit
+            </button>
+          </div>
+        </div>
+
+        {/* Feature cards for mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="bg-gradient-digiqo rounded-xl p-4 text-white">
+            <Zap className="w-8 h-8 mb-2" />
+            <h3 className="font-bold text-lg mb-1">Site en 48h</h3>
+            <p className="text-sm opacity-90">Votre site web professionnel livré en un temps record</p>
+          </div>
+          
+          <div className="bg-gradient-accent rounded-xl p-4 text-white">
+            <Search className="w-8 h-8 mb-2" />
+            <h3 className="font-bold text-lg mb-1">SEO Optimisé</h3>
+            <p className="text-sm opacity-90">Visibilité maximale</p>
+          </div>
+          
+          <div className="bg-gradient-secondary rounded-xl p-4 text-white">
+            <FileText className="w-8 h-8 mb-2" />
+            <h3 className="font-bold text-lg mb-1">Formulaires</h3>
+            <p className="text-sm opacity-90">Automatisés & intelligents</p>
+          </div>
+          
+          <div className="bg-gradient-digiqo rounded-xl p-4 text-white">
+            <Smartphone className="w-8 h-8 mb-2" />
+            <h3 className="font-bold text-lg mb-1">100% Responsive</h3>
+            <p className="text-sm opacity-90">Parfait sur tous les écrans</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-digiqo-accent via-digiqo-orange to-digiqo-accent-dark rounded-xl p-4 text-white sm:col-span-2">
+            <Server className="w-8 h-8 mb-2" />
+            <h3 className="font-bold text-lg mb-1">Hébergement</h3>
+            <p className="text-sm opacity-90">Inclus & sécurisé</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop version with animation */}
+      <ContainerScroll className="hidden lg:block h-[350vh] bg-gradient-to-b from-digiqo-white via-digiqo-gray-light to-digiqo-white">
       {/* Grille Bento sticky qui reste fixe pendant le scroll */}
       <BentoGrid className="sticky left-0 top-0 z-0 h-screen w-full p-4">
         
@@ -230,6 +299,7 @@ export default function HeroDigiqoV3() {
           </div>
         </div>
       </ContainerScale>
-    </ContainerScroll>
+      </ContainerScroll>
+    </div>
   )
 }
