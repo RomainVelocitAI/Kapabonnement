@@ -21,7 +21,8 @@
       "Bash(git commit:*)",
       "Bash(gh repo create:*)",
       "Bash(open http://localhost:3002)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

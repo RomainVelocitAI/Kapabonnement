@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démo Animations - Club de Plongée Saint-Leu</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0ea5e9, #0369a1);
+            color: white;
+            min-height: 200vh;
+        }
+        
+        .demo-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .demo-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .demo-icon {
+            width: 60px;
+            height: 60px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Animations de démonstration */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+            to { opacity: 1; transform: rotate(0deg) scale(1); }
+        }
+        
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes waveIn {
+            0% { opacity: 0; transform: translateY(30px) rotateX(90deg); }
+            100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+        }
+        
+        /* Classes d'animation */
+        .animate-fade-up { animation: fadeInUp 0.8s ease forwards; }
+        .animate-fade-left { animation: fadeInLeft 0.8s ease forwards; }
+        .animate-fade-right { animation: fadeInRight 0.8s ease forwards; }
+        .animate-scale { animation: scaleIn 0.6s ease forwards; }
+        .animate-rotate { animation: rotateIn 0.8s ease forwards; }
+        .animate-bounce { animation: bounceIn 0.8s ease forwards; }
+        .animate-slide-down { animation: slideInDown 0.8s ease forwards; }
+        .animate-wave { animation: waveIn 0.8s ease forwards; }
+        
+        /* Scroll reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+        }
+        
+        .scroll-reveal.fade-up {
+            transform: translateY(50px);
+        }
+        
+        .scroll-reveal.fade-up.revealed {
+            transform: translateY(0);
+        }
+        
+        .scroll-reveal.fade-left {
+            transform: translateX(-50px);
+        }
+        
+        .scroll-reveal.fade-left.revealed {
+            transform: translateX(0);
+        }
+        
+        .scroll-reveal.fade-right {
+            transform: translateX(50px);
+        }
+        
+        .scroll-reveal.fade-right.revealed {
+            transform: translateX(0);
+        }
+        
+        .scroll-reveal.scale {
+            transform: scale(0.8);
+        }
+        
+        .scroll-reveal.scale.revealed {
+            transform: scale(1);
+        }
+        
+        .scroll-reveal.rotate {
+            transform: rotate(-5deg) scale(0.9);
+        }
+        
+        .scroll-reveal.rotate.revealed {
+            transform: rotate(0deg) scale(1);
+        }
+        
+        /* Délais */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        
+        .trigger-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .trigger-btn:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; margin-bottom: 3rem;">🎬 Démo des Animations</h1>
+    
+    <div class="demo-section">
+        <h2>🚀 Animations au Clic (Testez-les !)</h2>
+        <div class="demo-grid">
+            <div class="demo-card" onclick="triggerAnimation(this, 'animate-fade-up')">
+                <div class="demo-icon">⬆️</div>
+                <h3>Fade Up</h3>
+                <p>Apparition depuis le bas</p>
+            </div>
+            
+            <div class="demo-card" onclick="triggerAnimation(this, 'animate-fade-left')">
+                <div class="demo-icon">⬅️</div>
+                <h3>Fade Left</h3>
+                <p>Apparition depuis la droite</p>
+            </div>
+            
+            <div class="demo-card" onclick="triggerAnimation(this, 'animate-fade-right')">
+                <div class="demo-icon">➡️</div>
+                <h3>Fade Right</h3>
+                <p>Apparition depuis la gauche</p>
+            </div>
+            
+            <div class="demo-card" onclick="triggerAnimation(this, 'animate-scale')">
+                <div class="demo-icon">🔍</div>
+                <h3>Scale In</h3>
+                <p>Zoom progressif</p>
+            </div>
+            
+            <div class="demo-card" onclick="triggerAnimation(this, 'animate-rotate')">
+                <div class="demo-icon">🔄</div>
+                <h3>Rotate In</h3>
+                <p>Rotation + apparition</p>
+            </div>
+            
+            <div class="demo-card" onclick="triggerAnimation(this, 'animate-bounce')">
+                <div class="demo-icon">🏀</div>
+                <h3>Bounce In</h3>
+                <p>Effet rebond</p>
+            </div>
+            
+            <div class="demo-card" onclick="triggerAnimation(this, 'animate-slide-down')">
+                <div class="demo-icon">⬇️</div>
+                <h3>Slide Down</h3>
+                <p>Glissement du haut</p>
+            </div>
+            
+            <div class="demo-card" onclick="triggerAnimation(this, 'animate-wave')">
+                <div class="demo-icon">🌊</div>
+                <h3>Wave In</h3>
+                <p>Effet vague 3D</p>
+            </div>
+        </div>
+        
+        <button class="trigger-btn" onclick="resetAnimations()">🔄 Reset Animations</button>
+    </div>
+    
+    <div class="demo-section">
+        <h2>📜 Animations au Scroll (Faites défiler !)</h2>
+        <div class="demo-grid">
+            <div class="demo-card scroll-reveal fade-up">
+                <div class="demo-icon">📈</div>
+                <h3>Scroll Fade Up</h3>
+                <p>Services du site</p>
+            </div>
+            
+            <div class="demo-card scroll-reveal fade-left delay-100">
+                <div class="demo-icon">👈</div>
+                <h3>Scroll Fade Left</h3>
+                <p>Texte "À propos"</p>
+            </div>
+            
+            <div class="demo-card scroll-reveal fade-right delay-200">
+                <div class="demo-icon">👉</div>
+                <h3>Scroll Fade Right</h3>
+                <p>Image "À propos"</p>
+            </div>
+            
+            <div class="demo-card scroll-reveal scale delay-300">
+                <div class="demo-icon">🎯</div>
+                <h3>Scroll Scale</h3>
+                <p>Cartes services</p>
+            </div>
+            
+            <div class="demo-card scroll-reveal rotate delay-400">
+                <div class="demo-icon">🖼️</div>
+                <h3>Scroll Rotate</h3>
+                <p>Galerie photos</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>⚡ Animations Appliquées sur le Site</h2>
+        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 0.75rem;">
+            <h3>🎯 Mapping des Animations :</h3>
+            <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+                <li><strong>Hero Section</strong> : fade-in-up (déjà appliqué)</li>
+                <li><strong>Titres de sections</strong> : fade-up</li>
+                <li><strong>Sous-titres</strong> : fade-up avec delay-100</li>
+                <li><strong>Cartes Services</strong> : scale avec stagger (délais en cascade)</li>
+                <li><strong>Galerie Photos</strong> : rotate avec stagger</li>
+                <li><strong>Section À propos</strong> : fade-left (texte) + fade-right (image)</li>
+                <li><strong>Features</strong> : fade-up avec stagger</li>
+                <li><strong>Contact</strong> : fade-left (infos) + fade-right (formulaire)</li>
+            </ul>
+        </div>
+        
+        <p style="margin-top: 2rem;">
+            <a href="index.html" class="trigger-btn">🏊‍♂️ Voir le Site avec Animations</a>
+        </p>
+    </div>
+    
+    <script>
+        // Animation au clic
+        function triggerAnimation(element, animationClass) {
+            element.classList.remove(animationClass);
+            void element.offsetWidth; // Force reflow
+            element.classList.add(animationClass);
+        }
+        
+        function resetAnimations() {
+            const cards = document.querySelectorAll('.demo-card');
+            cards.forEach(card => {
+                card.className = 'demo-card';
+            });
+        }
+        
+        // Scroll reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

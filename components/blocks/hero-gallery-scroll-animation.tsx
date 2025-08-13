@@ -97,8 +97,8 @@ BentoGrid.displayName = "BentoGrid"
 const BentoCell = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
   ({ className, style, ...props }, ref) => {
     const { scrollYProgress } = useContainerScrollContext()
-    const translate = useTransform(scrollYProgress, [0.1, 0.9], ["-35%", "0%"])
-    const scale = useTransform(scrollYProgress, [0, 0.9], [0.5, 1])
+    const translate = useTransform(scrollYProgress, [0.05, 0.5], ["-35%", "0%"])
+    const scale = useTransform(scrollYProgress, [0, 0.5], [0.5, 1])
 
     return (
       <motion.div
@@ -115,11 +115,11 @@ BentoCell.displayName = "BentoCell"
 const ContainerScale = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
   ({ className, style, ...props }, ref) => {
     const { scrollYProgress } = useContainerScrollContext()
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+    const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
+    const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0])
 
     const position = useTransform(scrollYProgress, (pos) =>
-      pos >= 0.6 ? "absolute" : "fixed"
+      pos >= 0.4 ? "absolute" : "fixed"
     )
     return (
       <motion.div

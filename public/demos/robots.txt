@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://plongee-saint-leu.com/sitemap.xml
+
+# Optimisations SEO
+Crawl-delay: 1
+
+# Interdire l'accès aux fichiers temporaires
+Disallow: /tmp_*
+Disallow: /*.tmp

@@ -23,7 +23,8 @@ const timelineData = [
       "Fonctionne même le dimanche à 23h",
       "Galerie photos pour montrer votre savoir-faire",
       "Hébergement et maintenance inclus"
-    ]
+    ],
+    demo: "https://demo-digiqo.netlify.app/club-plongee-saint-leu/"
   },
   {
     id: 2,
@@ -44,7 +45,8 @@ const timelineData = [
       "Notification instantanée à chaque demande",
       "Modifiez vos tarifs aussi facilement qu'un SMS",
       "Interface simple et intuitive"
-    ]
+    ],
+    demo: "https://demo-digiqo.netlify.app/carreleur-devis/"
   },
   {
     id: 3,
@@ -65,7 +67,8 @@ const timelineData = [
       "Changez vos plats du jour en 10 secondes",
       "Les clients commandent depuis leur canapé",
       "Gestion simplifiée de vos commandes"
-    ]
+    ],
+    demo: "https://demo-digiqo.netlify.app/snack-vente/"
   },
 ];
 
@@ -77,7 +80,7 @@ export function RadialOrbitalTimelineDemo() {
           Nos Formules
         </h2>
         <p className="text-xl text-white/80 text-center mt-4">
-          Choisissez la formule adaptée à vos besoins
+          Cliquez sur la formule adaptée à vos besoins
         </p>
       </div>
       <RadialOrbitalTimeline timelineData={timelineData} />

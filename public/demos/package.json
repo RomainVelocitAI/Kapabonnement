@@ -1,0 +1,25 @@
+{
+  "name": "club-plongee-saint-leu",
+  "version": "1.0.0",
+  "description": "Site vitrine premium pour club de plongée à Saint-Leu, La Réunion",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 3000",
+    "test": "open test-seo.html"
+  },
+  "keywords": [
+    "plongée",
+    "saint-leu",
+    "réunion",
+    "site-vitrine",
+    "template",
+    "seo"
+  ],
+  "author": "Rovo Dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/votre-repo/club-plongee-saint-leu.git"
+  }
+}

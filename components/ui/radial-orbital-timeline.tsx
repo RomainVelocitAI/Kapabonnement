@@ -18,6 +18,7 @@ interface TimelineItem {
   period?: string;
   badge?: string;
   benefits?: string[];
+  demo?: string;
 }
 
 interface RadialOrbitalTimelineProps {
@@ -294,7 +295,20 @@ export default function RadialOrbitalTimeline({
                         </div>
                       )}
                       
-                      <div className="mt-6 pt-4 border-t border-gray-200">
+                      <div className="mt-6 pt-4 border-t border-gray-200 space-y-3">
+                        {item.demo && (
+                          <a 
+                            href={item.demo} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-full py-2.5 px-4 bg-digiqo-primary hover:bg-digiqo-primary-dark text-white font-medium rounded-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+                          >
+                            <span>Voir la démo</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        )}
                         <button className="w-full py-3 px-4 bg-digiqo-orange hover:bg-digiqo-orange/90 text-white font-semibold rounded-lg transition-all transform hover:scale-105">
                           Je choisis cette formule
                         </button>
