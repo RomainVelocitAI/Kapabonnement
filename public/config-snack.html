@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Template Snack - Restaurant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .form-container {
+            padding: 3rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: #10b981;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .pdf-upload {
+            background: #f0fdf4;
+            border-color: #10b981;
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #e5e7eb;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .preview-remove {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pdf-preview {
+            background: #f3f4f6;
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pdf-icon {
+            color: #dc2626;
+            font-size: 2rem;
+        }
+
+        .pdf-info {
+            flex: 1;
+        }
+
+        .pdf-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .pdf-size {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .color-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .color-code {
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+            color: #374151;
+            background: #f3f4f6;
+            padding: 0.5rem;
+            border-radius: 4px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .color-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .color-item label {
+            margin-bottom: 0.75rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .menu-info {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-info h4 {
+            color: #065f46;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .menu-info ul {
+            color: #047857;
+            margin-left: 1.5rem;
+        }
+
+        .menu-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Messages d'erreur/succès */
+        .validation-message {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .validation-message.error {
+            color: #dc2626;
+        }
+        
+        .validation-message.success {
+            color: #059669;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .validation-message.error {
+                color: #f87171;
+            }
+            
+            .validation-message.success {
+                color: #34d399;
+            }
+        }
+        
+        /* Loading popup styles */
+        .loading-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #0ea5e9;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-content h3 {
+            color: #1f2937;
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .loading-content p {
+            color: #6b7280;
+            margin: 0 0 1.5rem;
+        }
+
+        .loading-progress {
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f3f4f6;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0ea5e9, #0369a1);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        #progressText {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .loading-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-utensils"></i> Configuration Template Snack</h1>
+            <p>Personnalisez votre site de restaurant avec commande en ligne</p>
+        </div>
+
+        <div class="form-container">
+            <form id="configForm">
+                <!-- Section 1: Données de base -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-building"></i>
+                        Informations de l'entreprise
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="companyName">Nom de l'entreprise *</label>
+                            <input type="text" id="companyName" name="companyName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Adresse complète *</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description/Slogan</label>
+                            <textarea id="description" name="description" rows="3" placeholder="Votre restaurant de quartier..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="hours">Horaires d'ouverture</label>
+                            <textarea id="hours" name="hours" rows="3" placeholder="Lun-Ven: 11h-22h..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin: 2rem 0 1rem 0; color: #374151;">Réseaux sociaux (optionnel)</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="facebook">Facebook</label>
+                            <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com/...">
+                        </div>
+                        <div class="form-group">
+                            <label for="instagram">Instagram</label>
+                            <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/...">
+                        </div>
+                        <div class="form-group">
+                            <label for="twitter">Twitter</label>
+                            <input type="url" id="twitter" name="twitter" placeholder="https://twitter.com/...">
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Upload de fichiers -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-upload"></i>
+                        Assets visuels
+                    </h2>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Logo principal</label>
+                            <div class="upload-area" onclick="document.getElementById('logoInput').click()">
+                                <i class="fas fa-image upload-icon"></i>
+                                <div class="upload-text">Cliquez pour sélectionner votre logo</div>
+                                <div class="upload-hint">PNG, JPG - Max 2MB</div>
+                            </div>
+                            <input type="file" id="logoInput" accept="image/*" style="display: none;">
+                            <div id="logoPreview" class="preview-container"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Favicon</label>
+                            <div class="upload-area" onclick="document.getElementById('faviconInput').click()">
+                                <i class="fas fa-star upload-icon"></i>
+                                <div class="upload-text">Cliquez pour sélectionner votre favicon</div>
+                                <div class="upload-hint">ICO, PNG - 16x16 ou 32x32px</div>
+                            </div>
+                            <input type="file" id="faviconInput" accept="image/*,.ico" style="display: none;">
+                            <div id="faviconPreview" class="preview-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <label>Galerie photos (jusqu'à 10 images)</label>
+                        <div class="upload-area" onclick="document.getElementById('photosInput').click()">
+                            <i class="fas fa-images upload-icon"></i>
+                            <div class="upload-text">Cliquez pour sélectionner vos photos de plats et restaurant</div>
+                            <div class="upload-hint">PNG, JPG - Max 5MB chaque - Jusqu'à 10 photos</div>
+                        </div>
+                        <input type="file" id="photosInput" accept="image/*" multiple style="display: none;">
+                        <div id="photosPreview" class="preview-container"></div>
+                    </div>
+
+                    <!-- Section Menu PDF -->
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <label>Menu (fichier PDF)</label>
+                        <div class="menu-info">
+                            <h4><i class="fas fa-info-circle"></i> Information importante</h4>
+                            <ul>
+                                <li>Uploadez votre menu au format PDF</li>
+                                <li>Le PDF sera intégré automatiquement à votre site</li>
+                                <li>Vous pourrez le remplacer à tout moment</li>
+                                <li>Taille maximum : 10MB</li>
+                            </ul>
+                        </div>
+                        <div class="upload-area pdf-upload" onclick="document.getElementById('menuInput').click()">
+                            <i class="fas fa-file-pdf upload-icon" style="color: #dc2626;"></i>
+                            <div class="upload-text">Cliquez pour sélectionner votre menu PDF</div>
+                            <div class="upload-hint">PDF uniquement - Max 10MB</div>
+                        </div>
+                        <input type="file" id="menuInput" accept=".pdf" style="display: none;">
+                        <div id="menuPreview"></div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Couleurs -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-palette"></i>
+                        Personnalisation des couleurs
+                    </h2>
+                    
+                    <div class="color-grid">
+                        <div class="color-item">
+                            <label>Couleur primaire (boutons, liens)</label>
+                            <div class="color-picker-container">
+                                <input type="color" id="primaryColor" class="color-input" value="#10b981">
+                                <span id="primaryColorCode" class="color-code">#10B981</span>
+                            </div>
+                        </div>
+
+                        <div class="color-item">
+                            <label>Couleur secondaire (accents)</label>
+                            <div class="color-picker-container">
+                                <input type="color" id="secondaryColor" class="color-input" value="#059669">
+                                <span id="secondaryColorCode" class="color-code">#059669</span>
+                            </div>
+                        </div>
+
+                        <div class="color-item">
+                            <label>Couleur texte titre</label>
+                            <div class="color-picker-container">
+                                <input type="color" id="titleColor" class="color-input" value="#1f2937">
+                                <span id="titleColorCode" class="color-code">#1F2937</span>
+                            </div>
+                        </div>
+
+                        <div class="color-item">
+                            <label>Couleur texte corps</label>
+                            <div class="color-picker-container">
+                                <input type="color" id="bodyColor" class="color-input" value="#374151">
+                                <span id="bodyColorCode" class="color-code">#374151</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Configuration des sections du site -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-cog"></i>
+                        Configuration des sections du site
+                    </h2>
+                    
+                    <p style="margin-bottom: 1.5rem; color: #6b7280;">
+                        Choisissez les sections à afficher sur votre site et configurez leur contenu.
+                    </p>
+                    <!-- Notes automatiques -->
+                    <div style="background-color: #f3f4f6; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                        <p style="margin: 0; color: #374151; font-size: 0.875rem;">
+                            <i class="fas fa-info-circle" style="color: #3b82f6;"></i>
+                            <strong>Sections automatiques :</strong><br>
+                            • Le <strong>menu</strong> s'affichera automatiquement si vous avez uploadé un PDF<br>
+                            • La <strong>galerie</strong> s'affichera automatiquement si vous avez uploadé des photos
+                        </p>
+                    </div>
+
+                    <!-- Services -->
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="hasServices" name="hasServices" onchange="toggleSection('services')">
+                            Afficher la section Services
+                        </label>
+                        <div id="servicesSection" style="display: none; margin-top: 1rem;">
+                            <label for="servicesCount">Nombre de services (max 6)</label>
+                            <input type="number" id="servicesCount" name="servicesCount" min="1" max="6" value="3" onchange="updateServiceFields()">
+                            <div id="servicesFields" style="margin-top: 1rem;">
+                                <!-- Les champs de services seront ajoutés dynamiquement -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- À propos (obligatoire) -->
+                    <div class="form-group">
+                        <h4 style="margin-bottom: 0.5rem;">Section À propos (obligatoire)</h4>
+                        <label for="aboutTitle">Titre de la section</label>
+                        <input type="text" id="aboutTitle" name="aboutTitle" placeholder="À propos de nous" required>
+                        <label for="aboutText" style="margin-top: 1rem;">Texte de présentation</label>
+                        <textarea id="aboutText" name="aboutText" rows="4" placeholder="Présentez votre restaurant..." required></textarea>
+                        
+                        <label style="margin-top: 1rem;">
+                            <input type="checkbox" id="hasStats" name="hasStats" onchange="toggleSection('stats')">
+                            Afficher des statistiques
+                        </label>
+                        <div id="statsSection" style="display: none; margin-top: 1rem;">
+                            <div class="form-grid">
+                                <div>
+                                    <label>Statistique 1</label>
+                                    <input type="text" id="stat1Label" placeholder="Années d'expérience">
+                                    <input type="text" id="stat1Value" placeholder="10+" style="margin-top: 0.5rem;">
+                                </div>
+                                <div>
+                                    <label>Statistique 2</label>
+                                    <input type="text" id="stat2Label" placeholder="Plats servis">
+                                    <input type="text" id="stat2Value" placeholder="5000+" style="margin-top: 0.5rem;">
+                                </div>
+                                <div>
+                                    <label>Statistique 3</label>
+                                    <input type="text" id="stat3Label" placeholder="Clients satisfaits">
+                                    <input type="text" id="stat3Value" placeholder="100%" style="margin-top: 0.5rem;">
+                                </div>
+                                <div>
+                                    <label>Statistique 4</label>
+                                    <input type="text" id="stat4Label" placeholder="Produits frais">
+                                    <input type="text" id="stat4Value" placeholder="100%" style="margin-top: 0.5rem;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Témoignages -->
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="hasTestimonials" name="hasTestimonials" onchange="toggleSection('testimonials')">
+                            Afficher la section Témoignages
+                        </label>
+                        <div id="testimonialsSection" style="display: none; margin-top: 1rem;">
+                            <label for="testimonialsCount">Nombre de témoignages (max 4)</label>
+                            <input type="number" id="testimonialsCount" name="testimonialsCount" min="1" max="4" value="3" onchange="updateTestimonialFields()">
+                            <div id="testimonialsFields" style="margin-top: 1rem;">
+                                <!-- Les champs de témoignages seront ajoutés dynamiquement -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ (obligatoire) -->
+                    <div class="form-group">
+                        <h4 style="margin-bottom: 0.5rem;">Section FAQ (obligatoire)</h4>
+                        <label for="faqCount">Nombre de questions FAQ (max 6)</label>
+                        <input type="number" id="faqCount" name="faqCount" min="1" max="6" value="3" onchange="updateFAQFields()" required>
+                        <div id="faqFields" style="margin-top: 1rem;">
+                            <!-- Les champs de FAQ seront ajoutés dynamiquement -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-primary" onclick="validateConfig()">
+                        <i class="fas fa-check"></i>
+                        Valider
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        <i class="fas fa-undo"></i>
+                        Réinitialiser
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popup de chargement -->
+    <div id="loadingPopup" class="loading-popup" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Upload en cours...</h3>
+            <p id="loadingText">Préparation des fichiers...</p>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div id="progressBar" class="progress-fill"></div>
+                </div>
+                <span id="progressText">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let uploadedFiles = {
+            logo: null,
+            favicon: null,
+            photos: [],
+            menu: null
+        };
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            setupFileUploads();
+            setupColorPickers();
+            updateServiceFields();
+            updateTestimonialFields();
+            updateFAQFields();
+        });
+
+        // Configuration des uploads de fichiers
+        function setupFileUploads() {
+            // Logo
+            document.getElementById('logoInput').addEventListener('change', function(e) {
+                handleFileUpload(e, 'logo', 'logoPreview', false);
+            });
+
+            // Favicon
+            document.getElementById('faviconInput').addEventListener('change', function(e) {
+                handleFileUpload(e, 'favicon', 'faviconPreview', false);
+            });
+
+            // Photos
+            document.getElementById('photosInput').addEventListener('change', function(e) {
+                handleFileUpload(e, 'photos', 'photosPreview', true);
+            });
+
+            // Menu PDF
+            document.getElementById('menuInput').addEventListener('change', function(e) {
+                handlePDFUpload(e);
+            });
+        }
+
+        // Gestion des uploads d'images
+        function handleFileUpload(event, type, previewId, multiple) {
+            const files = Array.from(event.target.files);
+            const previewContainer = document.getElementById(previewId);
+
+            if (multiple) {
+                // Pour les photos (multiple)
+                if (uploadedFiles.photos.length + files.length > 10) {
+                    alert('Maximum 10 photos autorisées');
+                    return;
+                }
+
+                files.forEach(file => {
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert(`${file.name} est trop volumineux (max 5MB)`);
+                        return;
+                    }
+
+                    uploadedFiles.photos.push(file);
+                    createPreview(file, previewContainer, () => {
+                        uploadedFiles.photos = uploadedFiles.photos.filter(f => f !== file);
+                    });
+                });
+            } else {
+                // Pour logo et favicon (single)
+                const file = files[0];
+                if (!file) return;
+
+                const maxSize = type === 'logo' ? 2 * 1024 * 1024 : 1 * 1024 * 1024;
+                if (file.size > maxSize) {
+                    alert(`Fichier trop volumineux (max ${maxSize / 1024 / 1024}MB)`);
+                    return;
+                }
+
+                uploadedFiles[type] = file;
+                previewContainer.innerHTML = '';
+                createPreview(file, previewContainer, () => {
+                    uploadedFiles[type] = null;
+                    previewContainer.innerHTML = '';
+                });
+            }
+        }
+
+        // Gestion de l'upload PDF
+        function handlePDFUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Vérification du type
+            if (file.type !== 'application/pdf') {
+                alert('Seuls les fichiers PDF sont autorisés');
+                return;
+            }
+
+            // Vérification de la taille (10MB max)
+            if (file.size > 10 * 1024 * 1024) {
+                alert('Le fichier est trop volumineux (max 10MB)');
+                return;
+            }
+
+            uploadedFiles.menu = file;
+            createPDFPreview(file);
+        }
+
+        // Créer un aperçu d'image
+        function createPreview(file, container, onRemove) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'preview-item';
+                
+                previewItem.innerHTML = `
+                    <img src="${e.target.result}" alt="Preview">
+                    <button type="button" class="preview-remove" onclick="this.parentElement.remove(); (${onRemove})();">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                
+                container.appendChild(previewItem);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Créer un aperçu PDF
+        function createPDFPreview(file) {
+            const container = document.getElementById('menuPreview');
+            const fileSize = (file.size / 1024 / 1024).toFixed(2);
+
+            container.innerHTML = `
+                <div class="pdf-preview">
+                    <i class="fas fa-file-pdf pdf-icon"></i>
+                    <div class="pdf-info">
+                        <div class="pdf-name">${file.name}</div>
+                        <div class="pdf-size">${fileSize} MB</div>
+                    </div>
+                    <button type="button" class="preview-remove" onclick="removePDF()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+        }
+
+        // Supprimer le PDF
+        function removePDF() {
+            uploadedFiles.menu = null;
+            document.getElementById('menuPreview').innerHTML = '';
+            document.getElementById('menuInput').value = '';
+        }
+
+        // Configuration des color pickers
+        function setupColorPickers() {
+            const colorInputs = ['primaryColor', 'secondaryColor', 'titleColor', 'bodyColor'];
+            
+            colorInputs.forEach(id => {
+                const input = document.getElementById(id);
+                const code = document.getElementById(id + 'Code');
+                
+                input.addEventListener('input', function() {
+                    code.textContent = this.value.toUpperCase();
+                });
+            });
+        }
+
+        // Toggle section visibility
+        function toggleSection(section) {
+            const sectionId = section + 'Section';
+            const sectionElement = document.getElementById(sectionId);
+            const checkbox = document.getElementById('has' + section.charAt(0).toUpperCase() + section.slice(1));
+            
+            if (sectionElement) {
+                sectionElement.style.display = checkbox.checked ? 'block' : 'none';
+            }
+        }
+
+        // Update service fields dynamically
+        function updateServiceFields() {
+            const count = parseInt(document.getElementById('servicesCount').value) || 3;
+            const container = document.getElementById('servicesFields');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= count; i++) {
+                const fieldGroup = document.createElement('div');
+                fieldGroup.style.marginBottom = '1.5rem';
+                fieldGroup.innerHTML = `
+                    <h5>Service ${i}</h5>
+                    <input type="text" id="service${i}Title" placeholder="Titre du service" style="margin-bottom: 0.5rem;">
+                    <textarea id="service${i}Description" rows="2" placeholder="Description du service"></textarea>
+                `;
+                container.appendChild(fieldGroup);
+            }
+        }
+
+        // Update testimonial fields dynamically
+        function updateTestimonialFields() {
+            const count = parseInt(document.getElementById('testimonialsCount').value) || 3;
+            const container = document.getElementById('testimonialsFields');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= count; i++) {
+                const fieldGroup = document.createElement('div');
+                fieldGroup.style.marginBottom = '1.5rem';
+                fieldGroup.innerHTML = `
+                    <h5>Témoignage ${i}</h5>
+                    <input type="text" id="testimonial${i}Name" placeholder="Nom du client" style="margin-bottom: 0.5rem;">
+                    <textarea id="testimonial${i}Text" rows="3" placeholder="Témoignage"></textarea>
+                    <input type="number" id="testimonial${i}Rating" min="1" max="5" value="5" placeholder="Note (1-5)" style="margin-top: 0.5rem;">
+                `;
+                container.appendChild(fieldGroup);
+            }
+        }
+
+        // Update FAQ fields dynamically
+        function updateFAQFields() {
+            const count = parseInt(document.getElementById('faqCount').value) || 3;
+            const container = document.getElementById('faqFields');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= count; i++) {
+                const fieldGroup = document.createElement('div');
+                fieldGroup.style.marginBottom = '1.5rem';
+                fieldGroup.innerHTML = `
+                    <h5>Question ${i}</h5>
+                    <input type="text" id="faq${i}Question" placeholder="Question" style="margin-bottom: 0.5rem;">
+                    <textarea id="faq${i}Answer" rows="3" placeholder="Réponse"></textarea>
+                `;
+                container.appendChild(fieldGroup);
+            }
+        }
+
+        // Collect section configuration data
+        function collectSectionConfig() {
+            const sections = {
+                hasServices: document.getElementById('hasServices').checked,
+                hasTestimonials: document.getElementById('hasTestimonials').checked,
+                hasStats: document.getElementById('hasStats').checked
+            };
+            
+            // Services
+            if (sections.hasServices) {
+                const servicesCount = parseInt(document.getElementById('servicesCount').value) || 3;
+                sections['Services Nombre'] = servicesCount;
+                const services = [];
+                for (let i = 1; i <= servicesCount; i++) {
+                    const title = document.getElementById(`service${i}Title`)?.value || '';
+                    const description = document.getElementById(`service${i}Description`)?.value || '';
+                    if (title && description) {
+                        services.push(`${title}: ${description}`);
+                    }
+                }
+                if (services.length > 0) {
+                    sections.Services = services.join('\n');
+                }
+            }
+            
+            // About (mandatory)
+            sections['About Titre'] = document.getElementById('aboutTitle').value || 'À propos de nous';
+            sections['About Texte'] = document.getElementById('aboutText').value || '';
+            
+            // Stats
+            if (sections.hasStats) {
+                const stats = [];
+                for (let i = 1; i <= 4; i++) {
+                    const label = document.getElementById(`stat${i}Label`)?.value || '';
+                    const value = document.getElementById(`stat${i}Value`)?.value || '';
+                    if (label && value) {
+                        stats.push(`${label}: ${value}`);
+                    }
+                }
+                if (stats.length > 0) {
+                    sections.Stats = stats.join('\n');
+                }
+            }
+            
+            // Testimonials
+            if (sections.hasTestimonials) {
+                const testimonialsCount = parseInt(document.getElementById('testimonialsCount').value) || 3;
+                sections['Testimonials Nombre'] = testimonialsCount;
+                const testimonials = [];
+                for (let i = 1; i <= testimonialsCount; i++) {
+                    const name = document.getElementById(`testimonial${i}Name`)?.value || '';
+                    const text = document.getElementById(`testimonial${i}Text`)?.value || '';
+                    const rating = parseInt(document.getElementById(`testimonial${i}Rating`)?.value) || 5;
+                    if (name && text) {
+                        testimonials.push(`${name} (⭐${rating}): "${text}"`);
+                    }
+                }
+                if (testimonials.length > 0) {
+                    sections.Testimonials = testimonials.join('\n---\n');
+                }
+            }
+            
+            // FAQ (mandatory)
+            const faqCount = parseInt(document.getElementById('faqCount').value) || 3;
+            sections['FAQ Nombre'] = faqCount;
+            const faq = [];
+            for (let i = 1; i <= faqCount; i++) {
+                const question = document.getElementById(`faq${i}Question`)?.value || '';
+                const answer = document.getElementById(`faq${i}Answer`)?.value || '';
+                if (question && answer) {
+                    faq.push(`Q: ${question}\nR: ${answer}`);
+                }
+            }
+            if (faq.length > 0) {
+                sections.FAQ = faq.join('\n---\n');
+            }
+            
+            return sections;
+        }
+
+        // Export de la configuration
+        function exportConfig() {
+            const formData = new FormData(document.getElementById('configForm'));
+            const config = {
+                companyInfo: {
+                    name: formData.get('companyName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    address: formData.get('address'),
+                    description: formData.get('description'),
+                    hours: formData.get('hours'),
+                    social: {
+                        facebook: formData.get('facebook'),
+                        instagram: formData.get('instagram'),
+                        twitter: formData.get('twitter'),
+                        linkedin: formData.get('linkedin')
+                    }
+                },
+                colors: {
+                    primary: document.getElementById('primaryColor').value,
+                    secondary: document.getElementById('secondaryColor').value,
+                    title: document.getElementById('titleColor').value,
+                    body: document.getElementById('bodyColor').value
+                },
+                files: uploadedFiles,
+                timestamp: new Date().toISOString()
+            };
+
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config-snack.json';
+            a.click();
+        }
+
+        // Convertir les fichiers en base64
+        async function convertFilesToBase64() {
+            const filesData = {};
+            
+            // Convertir logo
+            if (uploadedFiles.logo) {
+                const logoBase64 = await fileToBase64(uploadedFiles.logo);
+                filesData.logo = {
+                    name: uploadedFiles.logo.name,
+                    size: uploadedFiles.logo.size,
+                    type: uploadedFiles.logo.type,
+                    data: logoBase64
+                };
+            }
+            
+            // Convertir favicon
+            if (uploadedFiles.favicon) {
+                const faviconBase64 = await fileToBase64(uploadedFiles.favicon);
+                filesData.favicon = {
+                    name: uploadedFiles.favicon.name,
+                    size: uploadedFiles.favicon.size,
+                    type: uploadedFiles.favicon.type,
+                    data: faviconBase64
+                };
+            }
+            
+            // Convertir photos
+            if (uploadedFiles.photos && uploadedFiles.photos.length > 0) {
+                filesData.photos = [];
+                for (const photo of uploadedFiles.photos) {
+                    const photoBase64 = await fileToBase64(photo);
+                    filesData.photos.push({
+                        name: photo.name,
+                        size: photo.size,
+                        type: photo.type,
+                        data: photoBase64
+                    });
+                }
+            }
+            
+            // Convertir menu PDF
+            if (uploadedFiles.menu) {
+                const menuBase64 = await fileToBase64(uploadedFiles.menu);
+                filesData.menu = {
+                    name: uploadedFiles.menu.name,
+                    size: uploadedFiles.menu.size,
+                    type: uploadedFiles.menu.type,
+                    data: menuBase64
+                };
+            }
+            
+            return filesData;
+        }
+
+        // Convertir un fichier en base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Upload image vers Vercel function
+        async function uploadImageToVercel(file, folder = 'templates') {
+            try {
+                console.log(`Début upload de ${file.name} vers ${folder}`);
+                const base64 = await fileToBase64(file);
+                console.log(`Base64 généré pour ${file.name}, taille: ${base64.length} chars`);
+                
+                const response = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        image: base64,
+                        filename: file.name.split('.')[0],
+                        folder: folder
+                    })
+                });
+                
+                console.log(`Réponse fonction Vercel: ${response.status} ${response.statusText}`);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Erreur réponse:', errorText);
+                    throw new Error(`Upload failed: ${response.status} ${response.statusText} - ${errorText}`);
+                }
+                
+                const result = await response.json();
+                console.log(`Upload réussi pour ${file.name}:`, result.url);
+                return result.url;
+            } catch (error) {
+                console.error(`Erreur upload ${file.name}:`, error);
+                throw error;
+            }
+        }
+
+        // Générer un bloc de texte complet pour toutes les sections
+        function generateFullTextBlock() {
+            const sectionConfig = collectSectionConfig();
+            const sections = [];
+            
+            // Services
+            if (sectionConfig.Services) {
+                sections.push('=== SERVICES ===\n' + sectionConfig.Services);
+            }
+            
+            // About
+            if (sectionConfig['About Titre'] || sectionConfig['About Texte']) {
+                sections.push(`=== À PROPOS ===\nTitre: ${sectionConfig['About Titre'] || 'À propos de nous'}\nTexte: ${sectionConfig['About Texte'] || ''}`);
+            }
+            
+            // Stats
+            if (sectionConfig.Stats) {
+                sections.push('=== STATISTIQUES ===\n' + sectionConfig.Stats);
+            }
+            
+            // Testimonials
+            if (sectionConfig.Testimonials) {
+                sections.push('=== TÉMOIGNAGES ===\n' + sectionConfig.Testimonials);
+            }
+            
+            // FAQ
+            if (sectionConfig.FAQ) {
+                sections.push('=== FAQ ===\n' + sectionConfig.FAQ);
+            }
+            
+            // Menu (automatique si PDF uploadé)
+            sections.push('=== MENU ===\nMenu PDF intégré automatiquement si uploadé');
+            
+            // Galerie (automatique si photos uploadées)
+            sections.push('=== GALERIE ===\nGalerie intégrée automatiquement avec les photos uploadées');
+            
+            return sections.join('\n\n');
+        }
+
+        // Fonctions de gestion du popup de chargement
+        function showLoadingPopup() {
+            document.getElementById('loadingPopup').style.display = 'flex';
+        }
+
+        function hideLoadingPopup() {
+            document.getElementById('loadingPopup').style.display = 'none';
+        }
+
+        function updateLoadingProgress(percentage, text) {
+            const roundedPercentage = Math.round(percentage);
+            document.getElementById('progressBar').style.width = roundedPercentage + '%';
+            document.getElementById('progressText').textContent = roundedPercentage + '%';
+            document.getElementById('loadingText').textContent = text;
+        }
+
+        // Validation et envoi webhook
+        async function validateConfig() {
+            const formData = new FormData(document.getElementById('configForm'));
+            
+            // Validation des champs requis
+            const requiredFields = ['companyName', 'email', 'phone', 'address'];
+            for (const field of requiredFields) {
+                if (!formData.get(field)) {
+                    alert(`Le champ ${field} est requis`);
+                    return;
+                }
+            }
+
+            try {
+                // Afficher le popup de chargement
+                showLoadingPopup();
+                updateLoadingProgress(0, 'Préparation des fichiers...');
+
+                // Étape 1: Upload des fichiers vers Cloudinary via Vercel
+                console.log('Upload des fichiers en cours...');
+                const filesData = {
+                    logo: null,
+                    favicon: null,
+                    photos: [],
+                    menu: null
+                };
+                
+                let currentProgress = 10;
+                const totalFiles = (uploadedFiles.logo ? 1 : 0) + (uploadedFiles.favicon ? 1 : 0) + (uploadedFiles.photos?.length || 0) + (uploadedFiles.menu ? 1 : 0);
+                const progressStep = totalFiles > 0 ? 70 / totalFiles : 0;
+                
+                // Upload logo
+                if (uploadedFiles.logo) {
+                    updateLoadingProgress(currentProgress, `Upload du logo: ${uploadedFiles.logo.name}...`);
+                    const logoUrl = await uploadImageToVercel(uploadedFiles.logo, 'logos');
+                    filesData.logo = [{url: logoUrl, filename: uploadedFiles.logo.name}]; // Format objet pour Airtable
+                    currentProgress += progressStep;
+                }
+                
+                // Upload favicon
+                if (uploadedFiles.favicon) {
+                    updateLoadingProgress(currentProgress, `Upload du favicon: ${uploadedFiles.favicon.name}...`);
+                    const faviconUrl = await uploadImageToVercel(uploadedFiles.favicon, 'favicons');
+                    filesData.favicon = [{url: faviconUrl, filename: uploadedFiles.favicon.name}]; // Format objet pour Airtable
+                    currentProgress += progressStep;
+                }
+                
+                // Upload photos
+                if (uploadedFiles.photos && uploadedFiles.photos.length > 0) {
+                    for (let i = 0; i < uploadedFiles.photos.length; i++) {
+                        const photo = uploadedFiles.photos[i];
+                        updateLoadingProgress(currentProgress, `Upload photo ${i + 1}/${uploadedFiles.photos.length}: ${photo.name}...`);
+                        const photoUrl = await uploadImageToVercel(photo, 'photos');
+                        filesData.photos.push({
+                            url: photoUrl,
+                            filename: photo.name
+                        });
+                        currentProgress += progressStep;
+                    }
+                }
+
+                // Upload menu PDF (si présent)
+                if (uploadedFiles.menu) {
+                    updateLoadingProgress(currentProgress, `Upload du menu: ${uploadedFiles.menu.name}...`);
+                    const menuUrl = await uploadImageToVercel(uploadedFiles.menu, 'menus');
+                    filesData.menu = [{url: menuUrl, filename: uploadedFiles.menu.name}]; // Format objet pour Airtable
+                    currentProgress += progressStep;
+                }
+
+                // Collecter les données de configuration des sections
+                const sectionConfig = collectSectionConfig();
+                
+                const config = {
+                    templateType: 'snack',
+                    companyInfo: {
+                        name: formData.get('companyName'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        address: formData.get('address'),
+                        description: formData.get('description'),
+                        hours: formData.get('hours'),
+                        social: {
+                            facebook: formData.get('facebook'),
+                            instagram: formData.get('instagram'),
+                            twitter: formData.get('twitter'),
+                            linkedin: formData.get('linkedin')
+                        }
+                    },
+                    colors: {
+                        primary: document.getElementById('primaryColor').value,
+                        secondary: document.getElementById('secondaryColor').value,
+                        title: document.getElementById('titleColor').value,
+                        body: document.getElementById('bodyColor').value
+                    },
+                    files: filesData,
+                    filesCount: {
+                        logo: filesData.logo ? 1 : 0,
+                        favicon: filesData.favicon ? 1 : 0,
+                        photos: filesData.photos ? filesData.photos.length : 0,
+                        menu: filesData.menu ? 1 : 0,
+                        total: (filesData.logo ? 1 : 0) + (filesData.favicon ? 1 : 0) + (filesData.photos ? filesData.photos.length : 0) + (filesData.menu ? 1 : 0)
+                    },
+                    sections: sectionConfig,
+                    sectionsText: generateFullTextBlock(),
+                    timestamp: new Date().toISOString()
+                };
+
+                // Étape 2: Préparer les données avec URLs Cloudinary
+                updateLoadingProgress(80, 'Préparation de la configuration...');
+
+                // Générer PDF recap
+                updateLoadingProgress(90, 'Génération du récapitulatif...');
+                generatePDFRecap(config);
+                
+                // Étape 3: Envoyer webhook
+                updateLoadingProgress(95, 'Envoi de la configuration...');
+                try {
+                    // Essayer d'abord la fonction Vercel
+                    const response = await fetch('https://n8n.srv765302.hstgr.cloud/webhook/template-config', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(config)
+                    });
+
+                    updateLoadingProgress(100, 'Terminé!');
+                    
+                    if (response.ok) {
+                        setTimeout(() => {
+                            hideLoadingPopup();
+                            alert('Configuration validée et envoyée avec succès!');
+                        }, 500);
+                    } else if (response.status === 404) {
+                        // Webhook temporaire pas accessible, utiliser solution alternative
+                        setTimeout(() => {
+                            hideLoadingPopup();
+                            alert('Configuration prête! La fonction Vercel est en cours de déploiement. Veuillez réessayer dans quelques minutes.');
+                        }, 500);
+                        console.log('Configuration générée:', config);
+                    } else {
+                        throw new Error('Erreur lors de l\'envoi');
+                    }
+                } catch (fetchError) {
+                    // En cas d'erreur réseau ou autre, afficher les données
+                    console.error('Erreur réseau:', fetchError);
+                    setTimeout(() => {
+                        hideLoadingPopup();
+                        alert('Configuration générée localement (erreur réseau). Voir la console pour les détails.');
+                    }, 500);
+                    console.log('Configuration générée:', config);
+                }
+            } catch (error) {
+                console.error('Erreur complète:', error);
+                console.error('Stack trace:', error.stack);
+                hideLoadingPopup();
+                alert('Erreur lors de l\'envoi de la configuration: ' + error.message);
+            }
+        }
+
+        // Génération PDF recap
+        function generatePDFRecap(config) {
+            const recap = `
+Configuration Template Snack - ${config.companyInfo.name}
+
+=== INFORMATIONS ENTREPRISE ===
+Nom: ${config.companyInfo.name}
+Email: ${config.companyInfo.email}
+Téléphone: ${config.companyInfo.phone}
+Adresse: ${config.companyInfo.address}
+Description: ${config.companyInfo.description || 'Non renseigné'}
+Horaires: ${config.companyInfo.hours || 'Non renseigné'}
+
+=== RÉSEAUX SOCIAUX ===
+Facebook: ${config.companyInfo.social.facebook || 'Non renseigné'}
+Instagram: ${config.companyInfo.social.instagram || 'Non renseigné'}
+Twitter: ${config.companyInfo.social.twitter || 'Non renseigné'}
+LinkedIn: ${config.companyInfo.social.linkedin || 'Non renseigné'}
+
+=== COULEURS ===
+Couleur primaire: ${config.colors.primary}
+Couleur secondaire: ${config.colors.secondary}
+Couleur titre: ${config.colors.title}
+Couleur texte: ${config.colors.body}
+
+=== FICHIERS ===
+Logo: ${config.files.logo ? config.files.logo.name : 'Non fourni'}
+Favicon: ${config.files.favicon ? config.files.favicon.name : 'Non fourni'}
+Photos: ${config.files.photos.length} photo(s)
+Menu PDF: ${config.files.menu ? config.files.menu.name : 'Non fourni'}
+
+Généré le: ${new Date().toLocaleString('fr-FR')}
+            `;
+
+            const blob = new Blob([recap], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `recap-snack-${config.companyInfo.name.replace(/[^a-zA-Z0-9]/g, '-')}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Export de la configuration (gardé pour compatibilité)
+        function exportConfig() {
+            const formData = new FormData(document.getElementById('configForm'));
+            const config = {
+                companyInfo: {
+                    name: formData.get('companyName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    address: formData.get('address'),
+                    description: formData.get('description'),
+                    hours: formData.get('hours'),
+                    social: {
+                        facebook: formData.get('facebook'),
+                        instagram: formData.get('instagram'),
+                        twitter: formData.get('twitter'),
+                        linkedin: formData.get('linkedin')
+                    }
+                },
+                colors: {
+                    primary: document.getElementById('primaryColor').value,
+                    secondary: document.getElementById('secondaryColor').value,
+                    title: document.getElementById('titleColor').value,
+                    body: document.getElementById('bodyColor').value
+                },
+                files: uploadedFiles,
+                timestamp: new Date().toISOString()
+            };
+
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config-snack.json';
+            a.click();
+        }
+    </script>
+</body>
+</html>

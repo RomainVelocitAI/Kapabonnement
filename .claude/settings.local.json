@@ -22,9 +22,22 @@
       "Bash(gh repo create:*)",
       "Bash(open http://localhost:3002)",
       "Bash(curl:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "mcp__playwright__playwright_navigate",
+      "mcp__playwright__playwright_screenshot",
+      "mcp__playwright__playwright_fill",
+      "mcp__playwright__playwright_evaluate",
+      "mcp__playwright__playwright_get_visible_html",
+      "mcp__playwright__playwright_click",
+      "mcp__playwright__playwright_get_visible_text",
+      "mcp__playwright__playwright_console_logs",
+      "mcp__playwright__playwright_upload_file",
+      "mcp__playwright__playwright_close"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "/tmp"
+    ]
   }
 }
