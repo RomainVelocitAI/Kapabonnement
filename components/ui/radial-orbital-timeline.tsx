@@ -19,6 +19,7 @@ interface TimelineItem {
   badge?: string;
   benefits?: string[];
   demo?: string;
+  paymentLink?: string;
 }
 
 interface RadialOrbitalTimelineProps {
