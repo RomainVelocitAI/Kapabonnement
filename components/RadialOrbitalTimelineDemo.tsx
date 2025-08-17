@@ -24,7 +24,8 @@ const timelineData = [
       "Galerie photos pour montrer votre savoir-faire",
       "Hébergement et maintenance inclus"
     ],
-    demo: "https://demo-digiqo.netlify.app/club-plongee-saint-leu/"
+    demo: "https://demo-digiqo.netlify.app/club-plongee-saint-leu/",
+    paymentLink: "https://payments-eu1.hubspot.com/payments/purchase/hscs_eu1_IlNmChqZrfqKHquyMxsgYvD2MyDqe8BAjeivcnLnEODRFZ5Twz5LFSjE2gT8ZlQi?referrer=PAYMENT_LINK"
   },
   {
     id: 2,
@@ -46,7 +47,8 @@ const timelineData = [
       "Modifiez vos tarifs aussi facilement qu'un SMS",
       "Interface simple et intuitive"
     ],
-    demo: "https://demo-digiqo.netlify.app/carreleur-devis/"
+    demo: "https://demo-digiqo.netlify.app/carreleur-devis/",
+    paymentLink: "https://payments-eu1.hubspot.com/payments/purchase/hscs_eu1_zgxKH5de5YZ7WByDx2YvbRclq3eOwCTeBX0pzlrOJipQv8AYkQF7KpnrLsN7iAHD?referrer=PAYMENT_LINK"
   },
   {
     id: 3,
@@ -68,7 +70,8 @@ const timelineData = [
       "Les clients commandent depuis leur canapé",
       "Gestion simplifiée de vos commandes"
     ],
-    demo: "https://demo-digiqo.netlify.app/snack-vente/"
+    demo: "https://demo-digiqo.netlify.app/snack-vente/",
+    paymentLink: "https://payments-eu1.hubspot.com/payments/purchase/hscs_eu1_oSNZYcAXXacEfXSA9hT0YHtxCb7OBeExNE4J66xJuTEc0f2Q84niRq9JNjgTrzOg?referrer=PAYMENT_LINK"
   },
 ];
 

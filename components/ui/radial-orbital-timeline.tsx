@@ -172,6 +172,7 @@ export default function RadialOrbitalTimeline({
             perspective: "1000px",
             transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
           }}
+          suppressHydrationWarning={true}
         >
           <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-digiqo-accent via-digiqo-secondary to-digiqo-primary animate-pulse flex items-center justify-center z-10">
             <div className="absolute w-20 h-20 rounded-full border border-digiqo-accent/30 animate-ping opacity-70"></div>
@@ -205,6 +206,7 @@ export default function RadialOrbitalTimeline({
                 }}
                 className="absolute transition-all duration-700 cursor-pointer"
                 style={nodeStyle}
+                suppressHydrationWarning={true}
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleItem(item.id);
@@ -311,9 +313,16 @@ export default function RadialOrbitalTimeline({
                             </svg>
                           </a>
                         )}
-                        <button className="w-full py-3 px-4 bg-digiqo-orange hover:bg-digiqo-orange/90 text-white font-semibold rounded-lg transition-all transform hover:scale-105">
-                          Je choisis cette formule
-                        </button>
+                        {item.paymentLink && (
+                          <a 
+                            href={item.paymentLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-3 px-4 bg-digiqo-orange hover:bg-digiqo-orange/90 text-white font-semibold rounded-lg transition-all transform hover:scale-105 block text-center"
+                          >
+                            Je choisis cette formule
+                          </a>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
