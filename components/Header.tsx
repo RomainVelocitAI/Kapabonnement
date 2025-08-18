@@ -171,12 +171,12 @@ export const HeaderLuxury = () => {
   
   const { scrollY } = useScroll()
   const headerY = useTransform(scrollY, [0, 100], [0, -40])
-  const headerScale = useTransform(scrollY, [0, 100], [1, 0.98])
+  // const headerScale = useTransform(scrollY, [0, 100], [1, 0.98]) // Removed to prevent header from scaling
   const logoScale = useTransform(scrollY, [0, 100], [1, 0.85])
   
   const springConfig = { stiffness: 400, damping: 30 }
   const headerYSpring = useSpring(headerY, springConfig)
-  const headerScaleSpring = useSpring(headerScale, springConfig)
+  // const headerScaleSpring = useSpring(headerScale, springConfig) // Removed to prevent header from scaling
   const logoScaleSpring = useSpring(logoScale, springConfig)
   
   useEffect(() => {
@@ -198,10 +198,9 @@ export const HeaderLuxury = () => {
   return (
     <>
       <motion.header 
-        className="fixed top-0 left-0 right-0 z-[100]"
+        className="fixed top-0 left-0 right-0 z-50"
         style={{ 
-          y: headerYSpring,
-          scale: headerScaleSpring
+          y: headerYSpring
         }}
       >
       {/* Ultra-luxury glass effect */}

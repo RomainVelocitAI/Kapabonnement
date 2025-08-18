@@ -124,7 +124,7 @@ export default function HeroDigiqoV3() {
   return (
     <div className="min-h-screen">
       {/* Mobile version without animation */}
-      <div className="block lg:hidden bg-gradient-to-b from-digiqo-white via-digiqo-gray-light to-digiqo-white py-12 px-4">
+      <div className="block lg:hidden bg-gradient-to-b from-digiqo-white via-digiqo-gray-light to-digiqo-white pt-32 pb-12 px-4">
         {/* Hero text for mobile */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full mb-6 shadow-md">
@@ -135,7 +135,7 @@ export default function HeroDigiqoV3() {
           </div>
           
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight font-display mb-4">
-            <span className="text-black">Créez votre site web avec</span>{" "}
+            <span className="text-digiqo-secondary">Créez votre site web avec</span>{" "}
             <span className="bg-gradient-digiqo bg-clip-text text-transparent relative inline-block">
               Digiqo
             </span>
@@ -145,14 +145,11 @@ export default function HeroDigiqoV3() {
             Sites web professionnels, SEO performant et accompagnement personnalisé pour votre réussite digitale.
           </p>
           
-          <div className="flex flex-col gap-3">
-            <button className="group px-6 py-3 bg-gradient-digiqo text-white rounded-xl hover:shadow-digiqo-lg transition-all duration-300 font-medium font-display text-sm flex items-center justify-center gap-2">
+          <div className="flex justify-center">
+            <a href="#pricing" className="group px-6 py-3 bg-gradient-digiqo text-white rounded-xl hover:shadow-digiqo-lg transition-all duration-300 font-medium font-display text-sm flex items-center justify-center gap-2">
               Découvrir nos offres
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-6 py-3 border-2 border-digiqo-primary text-digiqo-primary rounded-xl hover:bg-digiqo-primary hover:text-white transition-all duration-300 font-medium font-display text-sm">
-              Demander un devis gratuit
-            </button>
+            </a>
           </div>
         </div>
 
@@ -191,9 +188,9 @@ export default function HeroDigiqoV3() {
       </div>
 
       {/* Desktop version with animation */}
-      <ContainerScroll className="hidden lg:block h-[350vh] bg-gradient-to-b from-digiqo-white via-digiqo-gray-light to-digiqo-white">
+      <ContainerScroll className="hidden lg:block h-[350vh] bg-gradient-to-b from-digiqo-white via-digiqo-gray-light to-digiqo-white pt-40">
       {/* Grille Bento sticky qui reste fixe pendant le scroll */}
-      <BentoGrid className="sticky left-0 top-0 z-0 h-screen w-full p-4">
+      <BentoGrid className="sticky left-0 top-0 z-10 h-screen w-full p-4">
         
         {/* Carte 1 : Rapidité - Site en 48h */}
         <AnimatedBentoCell
@@ -248,7 +245,7 @@ export default function HeroDigiqoV3() {
       </BentoGrid>
 
       {/* Contenu principal centré avec animation */}
-      <ContainerScale className="relative z-10 text-center px-4">
+      <ContainerScale className="relative z-20 text-center px-4">
         <div className="max-w-5xl mx-auto">
           {/* Badge de qualité - repositionné pour éviter le chevauchement */}
           <motion.div 
@@ -263,7 +260,7 @@ export default function HeroDigiqoV3() {
           
           {/* Titre principal */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display mb-6">
-            <span className="text-black">Créez votre site web avec</span>{" "}
+            <span className="text-digiqo-secondary">Créez votre site web avec</span>{" "}
             <span className="bg-gradient-digiqo bg-clip-text text-transparent relative inline-block">
               Digiqo
               <span className="absolute -inset-1 bg-gradient-digiqo opacity-10 blur-2xl"></span>
@@ -276,14 +273,11 @@ export default function HeroDigiqoV3() {
           </p>
           
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="group px-8 py-4 bg-gradient-digiqo text-white rounded-xl hover:shadow-digiqo-lg transition-all duration-300 font-medium font-display text-base flex items-center gap-2">
+          <div className="flex items-center justify-center">
+            <a href="#pricing" className="group px-8 py-4 bg-gradient-digiqo text-white rounded-xl hover:shadow-digiqo-lg transition-all duration-300 font-medium font-display text-base flex items-center gap-2">
               Découvrir nos offres
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 border-2 border-digiqo-primary text-digiqo-primary rounded-xl hover:bg-digiqo-primary hover:text-white transition-all duration-300 font-medium font-display text-base">
-              Demander un devis gratuit
-            </button>
+            </a>
           </div>
 
           {/* Points forts avec icônes */}

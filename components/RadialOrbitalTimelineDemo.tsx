@@ -6,7 +6,7 @@ import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 const timelineData = [
   {
     id: 1,
-    title: "Site Vitrine Pro",
+    title: "Site-web \"One Page\"",
     date: "99€",
     content: "Un site professionnel complet",
     category: "Vitrine",
@@ -25,11 +25,11 @@ const timelineData = [
       "Hébergement et maintenance inclus"
     ],
     demo: "https://demo-digiqo.netlify.app/club-plongee-saint-leu/",
-    paymentLink: "https://payments-eu1.hubspot.com/payments/purchase/hscs_eu1_IlNmChqZrfqKHquyMxsgYvD2MyDqe8BAjeivcnLnEODRFZ5Twz5LFSjE2gT8ZlQi?referrer=PAYMENT_LINK"
+    paymentLink: "https://app-eu1.hubspot.com/payments/tNtmnNDDGMvXRXR?referrer=PAYMENT_LINK"
   },
   {
     id: 2,
-    title: "Devis Automatique",
+    title: "Site-web \"One Page\" + Formulaire de Devis",
     date: "199€",
     content: "Vos devis se génèrent automatiquement",
     category: "Devis",
@@ -48,11 +48,11 @@ const timelineData = [
       "Interface simple et intuitive"
     ],
     demo: "https://demo-digiqo.netlify.app/carreleur-devis/",
-    paymentLink: "https://payments-eu1.hubspot.com/payments/purchase/hscs_eu1_zgxKH5de5YZ7WByDx2YvbRclq3eOwCTeBX0pzlrOJipQv8AYkQF7KpnrLsN7iAHD?referrer=PAYMENT_LINK"
+    paymentLink: "https://app-eu1.hubspot.com/payments/sg9GhNqGRxhm?referrer=PAYMENT_LINK"
   },
   {
     id: 3,
-    title: "Commande Restaurant",
+    title: "Site-web \"One Page\" Restaurant",
     date: "299€",
     content: "Système de commande en ligne complet",
     category: "Restaurant",
@@ -71,18 +71,18 @@ const timelineData = [
       "Gestion simplifiée de vos commandes"
     ],
     demo: "https://demo-digiqo.netlify.app/snack-vente/",
-    paymentLink: "https://payments-eu1.hubspot.com/payments/purchase/hscs_eu1_oSNZYcAXXacEfXSA9hT0YHtxCb7OBeExNE4J66xJuTEc0f2Q84niRq9JNjgTrzOg?referrer=PAYMENT_LINK"
+    paymentLink: "https://app-eu1.hubspot.com/payments/9z9ymxfC?referrer=PAYMENT_LINK"
   },
 ];
 
 export function RadialOrbitalTimelineDemo() {
   return (
     <div className="relative">
-      <div className="absolute top-8 md:top-16 left-1/2 -translate-x-1/2 z-20 px-4 w-full max-w-2xl">
+      <div className="absolute top-4 md:top-8 left-1/2 -translate-x-1/2 z-20 px-4 w-full max-w-2xl">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white text-center tracking-tight">
           Nos Formules
         </h2>
-        <p className="text-sm sm:text-base md:text-xl text-white/80 text-center mt-2 md:mt-4">
+        <p className="text-sm sm:text-base md:text-xl text-white/80 text-center mt-2 md:mt-4 mb-8 md:mb-16">
           Cliquez sur la formule adaptée à vos besoins
         </p>
       </div>
